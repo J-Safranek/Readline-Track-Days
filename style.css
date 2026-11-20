@@ -1,0 +1,543 @@
+/* ===== Redline Track Days – hlavní stylopis ===== */
+
+:root {
+  --bg: #14161a;
+  --bg-light: #1f2329;
+  --text: #f2f2f2;
+  --muted: #c3c9d1;
+  --red: #c8102e;
+  --red-hover: #e0203f;
+  --border: #353b44;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: #ff8a98;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 3px solid #ffd43b;
+  outline-offset: 3px;
+}
+
+/* ===== Odkaz „přeskočit na obsah“ (přístupnost) ===== */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  background-color: #ffd43b;
+  color: #000000;
+  padding: 8px 14px;
+  z-index: 200;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* ===== Nadpisy ===== */
+h1, h2, h3 {
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(2rem, 7vw, 3.6rem);
+  font-style: italic;
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin: 0 0 16px;
+  padding-left: 14px;
+  border-left: 5px solid var(--red);
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin: 0 0 8px;
+}
+
+/* ===== Hlavička a navigace (flexbox 1 + 2, position: sticky) ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #0c0d10;
+  border-bottom: 3px solid var(--red);
+}
+
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-style: italic;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #ff4d5e;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.nav-list a {
+  display: block;
+  padding: 8px 12px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.nav-list a:hover {
+  background-color: var(--bg-light);
+}
+
+.nav-list a[aria-current="page"] {
+  background-color: var(--red);
+}
+
+/* ===== Rozvržení ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.section {
+  padding: 48px 0;
+}
+
+.section-alt {
+  background-color: var(--bg-light);
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+/* ===== Hero ===== */
+.hero {
+  padding: 72px 0 56px;
+  background-color: #0c0d10;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-text {
+  animation: najet 0.8s ease-out;
+}
+
+@keyframes najet {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Tlačítka (flexbox 3) ===== */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 2px solid var(--red);
+  border-radius: 6px;
+  background-color: var(--red);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--red-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.btn-outline:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* ===== Čísla v hero (flexbox 4) ===== */
+.stats {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.stats li {
+  flex: 1 1 140px;
+  padding: 14px;
+  background-color: var(--bg-light);
+  border-radius: var(--radius);
+  border-top: 4px solid var(--red);
+}
+
+.stats strong {
+  display: block;
+  font-size: 1.8rem;
+}
+
+/* ===== Karty (grid 1) ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.section-alt .card {
+  background-color: var(--bg);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red);
+}
+
+.card-body {
+  padding: 16px;
+  flex: 1;
+}
+
+.card-body p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+
+.price {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* ===== Dvousloupcové bloky (grid 2) ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+/* ===== Seznamy ===== */
+.check-list,
+.steps {
+  padding-left: 22px;
+}
+
+.check-list li,
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* ===== Článek ===== */
+article {
+  background-color: var(--bg-light);
+  border-left: 5px solid var(--red);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.section-alt article {
+  background-color: var(--bg);
+}
+
+article p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ===== Tabulka ===== */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+caption {
+  padding: 12px;
+  text-align: left;
+  font-weight: 700;
+  background-color: var(--bg-light);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  background-color: var(--red);
+  color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--bg-light);
+}
+
+tbody tr:hover {
+  background-color: #2a2f37;
+}
+
+/* ===== Galerie (grid 3) ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background-color: var(--bg-light);
+}
+
+.gallery img {
+  width: 100%;
+  transition: transform 0.4s;
+}
+
+.gallery figure:hover img {
+  transform: scale(1.06);
+}
+
+.gallery figcaption {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+/* ===== Formulář (flexbox 5) ===== */
+.form {
+  max-width: 640px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+  border: none;
+  padding: 0;
+}
+
+label,
+legend {
+  font-weight: 700;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #ffffff;
+  background-color: var(--bg-light);
+  border: 2px solid #5b6470;
+  border-radius: 6px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ffd43b;
+}
+
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.radio-row label,
+.check-label {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--red);
+}
+
+/* ===== Modal (dialog) ===== */
+dialog {
+  max-width: 480px;
+  width: calc(100% - 32px);
+  padding: 24px;
+  border: 2px solid var(--red);
+  border-radius: var(--radius);
+  background-color: var(--bg-light);
+  color: var(--text);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* ===== Plovoucí tlačítko (position: fixed) ===== */
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  padding: 12px 18px;
+  border-radius: 50px;
+  background-color: var(--red);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.fab:hover {
+  background-color: var(--red-hover);
+  color: #ffffff;
+}
+
+/* ===== Patička (flexbox) ===== */
+.site-footer {
+  background-color: #0c0d10;
+  border-top: 3px solid var(--red);
+  padding: 28px 0 90px;
+  color: var(--muted);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-inner p {
+  margin: 0 0 6px;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Responzivita ===== */
+@media (min-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ===== Omezení animací (přístupnost) ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
